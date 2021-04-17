@@ -1,0 +1,47 @@
+server:
+  port: ${PORT:8080}
+  servlet:
+    contextPath: /roberto
+
+spring:
+  profiles:
+     active: ${PROFILE:hml}
+  application:
+    name: ${APP-NAME:Roberto} 
+
+endpoints:
+  health:
+    sensitive: false
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  security:
+    enabled: false
+
+security:
+  user:
+    name: ${SECURITY-USERNAME:user}
+    password: ${SECURITY-PASSWORD:user}
+  jwt:
+      uri: "/**"
+      header: ${JWT-HEADER:Authorization}
+      prefix: ${JWT-PREFIX:Bearer}
+      secret: ${JWT-SECRET:ade0b6e310c0a3a83583cf3523ffc27c}
+
+bztoken: ${BZTOKEN:guheeudjjuwhwudhdu}
+
+info:
+  app:
+    encoding: '@project.build.sourceEncoding@'
+  java:
+    source: '@java.version@'
+    target: '@java.version@'
+  build:
+    artifact: '@project.artifactId@'
+    name: '@project.name@'
+    description: '@project.description@'
+    version: '@project.version@'
+    
+
