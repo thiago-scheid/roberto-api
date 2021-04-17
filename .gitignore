@@ -1,4 +1,6 @@
+HELP.md
 /target/
+.mvn
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -23,9 +25,6 @@
 /dist/
 /nbdist/
 /.nb-gradle/
-
-target/
-!.mvn/wrapper/maven-wrapper.jar
 
 *target*
 *.jar
