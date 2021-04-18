@@ -48,8 +48,7 @@ test-tag:
 
 sonar:
   stage: sonar
-  script:
-    - mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=28a92e1567a359e88c9686086504497b92cd3b5b 
+  script:     
     - cat target/site/jacoco/index.html | grep -o '<tfoot>.*</tfoot>'
   coverage: "/Total.*?([0-9]{1,3})%/"
   only:
