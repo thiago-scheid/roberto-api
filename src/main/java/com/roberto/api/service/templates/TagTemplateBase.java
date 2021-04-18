@@ -10,7 +10,7 @@ public abstract class TagTemplateBase {
 	private Map<String, String> dict = new HashMap<>();
 
 	protected TagTemplateBase() {
-		
+
 		dict.put("©", "_C2_A9");
 		dict.put("®", "_C2_AE");
 		dict.put("™", "_E2_84_A2");
