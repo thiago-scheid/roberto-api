@@ -30,8 +30,7 @@ security:
       uri: "/**"
       header: ${JWT-HEADER:Authorization}
       prefix: ${JWT-PREFIX:Bearer}
-      secret: ${JWT-SECRET:ade0b6e310c0a3a83583cf3523ffc27c}
-  enable-csrf: false
+      secret: ${JWT-SECRET:ade0b6e310c0a3a83583cf3523ffc27c} 
 
 bztoken: ${BZTOKEN:guheeudjjuwhwudhdu}
 
