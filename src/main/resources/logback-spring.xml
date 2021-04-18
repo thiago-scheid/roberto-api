@@ -24,12 +24,12 @@
       </encoder>
    </appender>
     
-    <logger name="com.roberto.filter.http.HttpLoggingFilter" level="TRACE" additivity="false">
+    <logger name="com.roberto.api.filter.http.HttpLoggingFilter" level="TRACE" additivity="false">
     	<appender-ref ref="STDOUT" />
 		<appender-ref ref="burzum" />		
 	</logger> 
 	
-	<logger name="com.roberto.RobertoApplication" level="DEBUG" additivity="false">
+	<logger name="com.roberto.api.RobertoApplication" level="DEBUG" additivity="false">
     	<appender-ref ref="STDOUT" />
 		<appender-ref ref="burzum" />		
 	</logger> 

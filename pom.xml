@@ -11,7 +11,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.roberto</groupId>
+	<groupId>com.roberto.api</groupId>
 	<artifactId>roberto</artifactId>
 	<version>1.0.0</version>
 	<name>roberto</name>
@@ -27,13 +27,16 @@
 		<sonar.coverage.exclusions>
 			**/model/**/*,
 			**/domain/**/*,
+			**/enums/**,
+			**/factories/**,
 			**/dto/*,
 			**/dto/**/*,
 			**/filter/*,
 			**/filter/http/*,
 			**/filter/security/*,			
 			**/exception/*,
-			**/config/*
+			**/config/*,
+			**/api/*RobertoApplication.*
 		</sonar.coverage.exclusions>
 		<sonar.test.exclusions>
 			src/test/**/*
@@ -179,6 +182,8 @@
 						<excludes>
 							<exclude>**/model/**/*</exclude>
 							<exclude>**/domain/**/*</exclude>
+							<exclude>**/enums/*</exclude>
+						    <exclude>**/factories/**</exclude>
 							<exclude>**/dto/*</exclude>
 							<exclude>**/dto/**/*</exclude>
 							<exclude>**/filter/*</exclude>
@@ -188,6 +193,7 @@
 							<exclude>**/repository/*</exclude>
 							<exclude>**/exception/*</exclude>
 							<exclude>**/config/*</exclude>
+							<exclude>**/api/*RobertoApplication.*</exclude>
 						</excludes>
 					</configuration>
 	            <executions>
