@@ -1,13 +1,15 @@
 package com.roberto.controller.dto;
 
+import javax.validation.constraints.NotNull;
 import lombok.Data;
-import java.io.Serializable;
 
 @Data
-public class PrintZplTagRequest implements Serializable {
+@NotNull
+public class PrintZplTagRequest {
 
-	private static final long serialVersionUID = -491027265505819708L;
-
+	@NotNull
 	private String printerName;
+
+	@NotNull
 	private String zpl;
 }

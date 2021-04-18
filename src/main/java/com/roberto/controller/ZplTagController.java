@@ -24,10 +24,10 @@ public class ZplTagController {
 
 		PrintZplTagResponse response = new PrintZplTagResponse();
 
-		response.setSystem("roberto");
-		response.setStatus(false);
-
 		try {
+
+			response.setSystem("roberto");
+			response.setStatus(false);
 
 			boolean success = service.printTags(request.getPrinterName(), request.getZpl(), TemplateTagType.ZplTag);
 
@@ -45,9 +45,9 @@ public class ZplTagController {
 			}
 
 		} catch (Exception ex) {
-			
+
 			response.setMessage(ex.getMessage());
-			
+
 			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 		}
 	}
