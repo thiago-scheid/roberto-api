@@ -25,14 +25,13 @@
 		<sonar.projectKey>28a92e1567a359e88c9686086504497b92cd3b5b</sonar.projectKey>
 		<sonar.organization>thiago-scheid</sonar.organization>
 		<sonar.coverage.exclusions>
-			**/model/**/*
+			**/model/**/*,
 			**/domain/**/*,
 			**/dto/*,
 			**/dto/**/*,
 			**/filter/*,
-			**/filter/http/*
-			**/filter/security/*
-			**/repository/*,
+			**/filter/http/*,
+			**/filter/security/*,			
 			**/exception/*,
 			**/config/*
 		</sonar.coverage.exclusions>
