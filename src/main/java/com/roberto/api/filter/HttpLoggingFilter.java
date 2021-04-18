@@ -1,4 +1,4 @@
-package com.roberto.api.config;
+package com.roberto.api.filter;
 
 import static net.logstash.logback.marker.Markers.appendRaw;
 import java.io.BufferedReader;
@@ -104,7 +104,7 @@ public class HttpLoggingFilter implements Filter {
 				fullPath += httpServletRequest.getServletPath();
 			}
 
-			fullPath = fullPath.replaceAll("//", "/");
+			fullPath = fullPath.replace("//", "/");
 			dtoHttp.setUrl(fullPath);
 
 			chain.doFilter(bufferedRequest, bufferedResponse);
@@ -136,21 +136,18 @@ public class HttpLoggingFilter implements Filter {
 			logger.debug(mk, message);
 			MDC.clear();
 
-		} catch (Throwable a) {
+		} catch (Exception a) {
 			if (mk == null) {
 				logger.error(String.format("EXCEPTION : %s", a.getMessage()));
 			} else {
 				logger.error(mk, String.format("EXCEPTION : %s", a.getMessage()));
 			}
-
 		}
 	}
 
 	private static final class BufferedRequestWrapper extends HttpServletRequestWrapper {
 
-		private ByteArrayInputStream bais = null;
 		private ByteArrayOutputStream baos = null;
-		private BufferedServletInputStream bsis = null;
 		private byte[] buffer = null;
 
 		public BufferedRequestWrapper(HttpServletRequest req) throws IOException {
@@ -168,9 +165,8 @@ public class HttpLoggingFilter implements Filter {
 
 		@Override
 		public ServletInputStream getInputStream() {
-			this.bais = new ByteArrayInputStream(this.buffer);
-			this.bsis = new BufferedServletInputStream(this.bais);
-			return this.bsis;
+			ByteArrayInputStream bais = new ByteArrayInputStream(this.buffer);
+			return new BufferedServletInputStream(bais);
 		}
 
 		String getRequestBody() throws IOException {
@@ -225,9 +221,8 @@ public class HttpLoggingFilter implements Filter {
 
 		@Override
 		public void setReadListener(ReadListener arg0) {
-			/* */
+			// Do nothing because.
 		}
-
 	}
 
 	public class TeeServletOutputStream extends ServletOutputStream {
@@ -262,7 +257,7 @@ public class HttpLoggingFilter implements Filter {
 
 		@Override
 		public void setWriteListener(WriteListener arg0) {
-			/* */
+			// Do nothing because.
 		}
 	}
 
@@ -293,7 +288,6 @@ public class HttpLoggingFilter implements Filter {
 				tee = new TeeServletOutputStream(original.getOutputStream(), bos);
 			}
 			return tee;
-
 		}
 
 		@Override
@@ -471,8 +465,7 @@ public class HttpLoggingFilter implements Filter {
 
 		@Override
 		public void setContentLengthLong(long arg0) {
-			/* */
+			// Do nothing because.
 		}
-
 	}
 }

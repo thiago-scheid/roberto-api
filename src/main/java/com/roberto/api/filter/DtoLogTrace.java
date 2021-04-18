@@ -1,4 +1,4 @@
-package com.roberto.api.config;
+package com.roberto.api.filter;
 
 import java.io.Serializable;
 import com.google.gson.Gson;

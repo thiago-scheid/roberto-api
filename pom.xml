@@ -31,8 +31,7 @@
 			**/factories/**,
 			**/dto/*,
 			**/dto/**/*,
-			**/filter/*,
-			**/filter/http/*,
+			**/filter/*,			
 			**/security/*,			
 			**/exception/*,
 			**/config/*,
@@ -186,8 +185,7 @@
 						    <exclude>**/factories/**</exclude>
 							<exclude>**/dto/*</exclude>
 							<exclude>**/dto/**/*</exclude>
-							<exclude>**/filter/*</exclude>
-							<exclude>**/filter/http/*</exclude>
+							<exclude>**/filter/*</exclude>							
 							<exclude>**/security/*</exclude>
 							<exclude>**/test/*</exclude>
 							<exclude>**/repository/*</exclude>
