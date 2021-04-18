@@ -37,6 +37,7 @@
 		<sonar.test.exclusions>
 			src/test/**/*
 		</sonar.test.exclusions>
+		<sonar.organization>thiago-scheid</sonar.organization>
 	</properties>
 
 	<dependencies>
