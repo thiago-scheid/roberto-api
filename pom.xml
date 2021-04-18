@@ -33,7 +33,7 @@
 			**/dto/**/*,
 			**/filter/*,
 			**/filter/http/*,
-			**/filter/security/*,			
+			**/security/*,			
 			**/exception/*,
 			**/config/*,
 			**/api/*RobertoApplication.*
@@ -188,7 +188,7 @@
 							<exclude>**/dto/**/*</exclude>
 							<exclude>**/filter/*</exclude>
 							<exclude>**/filter/http/*</exclude>
-							<exclude>**/filter/security/*</exclude>
+							<exclude>**/security/*</exclude>
 							<exclude>**/test/*</exclude>
 							<exclude>**/repository/*</exclude>
 							<exclude>**/exception/*</exclude>

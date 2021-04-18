@@ -1,4 +1,4 @@
-package com.roberto.api.filter.http;
+package com.roberto.api.config;
 
 import static net.logstash.logback.marker.Markers.appendRaw;
 import java.io.BufferedReader;
@@ -58,7 +58,6 @@ public class HttpLoggingFilter implements Filter {
 		DtoLogTrace dtoTrace = new DtoLogTrace();
 		dtoTrace.setId(uuid);
 		LogstashMarker mk = null;
-
 		try {
 
 			int maxSizeResponse = 4000;
@@ -81,6 +80,7 @@ public class HttpLoggingFilter implements Filter {
 			MDC.put("env", ConfigInfo.config().getEnv());
 			MDC.put("version", ConfigInfo.config().getVersion());
 			MDC.put("hostname", ConfigInfo.config().getHostName());
+
 			MDC.put("kind", "api backend");
 
 			ConfigInfo.config().setLocale(request.getLocale());
@@ -224,8 +224,10 @@ public class HttpLoggingFilter implements Filter {
 		}
 
 		@Override
-		public void setReadListener(ReadListener arg0) {		
+		public void setReadListener(ReadListener arg0) {
+			/* */
 		}
+
 	}
 
 	public class TeeServletOutputStream extends ServletOutputStream {
@@ -259,7 +261,8 @@ public class HttpLoggingFilter implements Filter {
 		}
 
 		@Override
-		public void setWriteListener(WriteListener arg0) {		
+		public void setWriteListener(WriteListener arg0) {
+			/* */
 		}
 	}
 
@@ -467,7 +470,9 @@ public class HttpLoggingFilter implements Filter {
 		}
 
 		@Override
-		public void setContentLengthLong(long arg0) {			
+		public void setContentLengthLong(long arg0) {
+			/* */
 		}
+
 	}
 }

@@ -1,4 +1,4 @@
-package com.roberto.api.filter.http;
+package com.roberto.api.config;
 
 import java.io.Serializable;
 import com.google.gson.Gson;
@@ -11,7 +11,6 @@ import lombok.Setter;
 public class DtoLogTrace implements Serializable {
 
 	private static final long serialVersionUID = 2382704820244999384L;
-
 	private String id;
 
 	@Override

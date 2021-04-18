@@ -1,4 +1,4 @@
-package com.roberto.api.filter.http;
+package com.roberto.api.config;
 
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonProperty;

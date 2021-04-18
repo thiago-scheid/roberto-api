@@ -1,4 +1,4 @@
-package com.roberto.api.filter.security;
+package com.roberto.api.security;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

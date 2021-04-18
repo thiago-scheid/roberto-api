@@ -1,4 +1,4 @@
-package com.roberto.api.annotation;
+package com.roberto.api.config;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
