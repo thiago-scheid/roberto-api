@@ -22,22 +22,33 @@ public class ZplTagController {
 	@ApiOperation(value = "Imprime etiqueta, passando o código ZPL")
 	public ResponseEntity<PrintZplTagResponse> print(@RequestBody PrintZplTagRequest request) {
 
+		PrintZplTagResponse response = new PrintZplTagResponse();
+
+		response.setSystem("roberto");
+		response.setStatus(false);
+
 		try {
-			
-			boolean success = service.printTags(request.getPrinterName(), request.getZpl(),
-					TemplateTagType.ZplTag);
+
+			boolean success = service.printTags(request.getPrinterName(), request.getZpl(), TemplateTagType.ZplTag);
 
 			if (success) {
-				
-				return new ResponseEntity<>(new PrintZplTagResponse("Sucesso ao imprimir etiqueta."), HttpStatus.OK);
+
+				response.setMessage("Sucesso ao imprimir etiqueta.");
+				response.setStatus(true);
+
+				return new ResponseEntity<>(response, HttpStatus.OK);
 			} else {
-				
-				return new ResponseEntity<>(new PrintZplTagResponse("Erro ao imprimir etiqueta."),
-						HttpStatus.BAD_REQUEST);
+
+				response.setMessage("Erro ao imprimir etiqueta.");
+
+				return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 			}
 
 		} catch (Exception ex) {
-			return new ResponseEntity<>(new PrintZplTagResponse(ex.toString()), HttpStatus.BAD_REQUEST);
+			
+			response.setMessage(ex.getMessage());
+			
+			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 		}
 	}
 }

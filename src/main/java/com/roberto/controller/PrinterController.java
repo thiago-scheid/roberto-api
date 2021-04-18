@@ -35,12 +35,14 @@ public class PrinterController {
 		PrinterResponse response = new PrinterResponse();
 
 		response.setSystem("roberto");
+		response.setStatus(false);
 
 		try {
 
 			List<SystemPrinter> list = service.getPrinterServer();
 
 			response.setPrinters(list);
+			response.setStatus(true);
 
 		} catch (Exception ex) {
 

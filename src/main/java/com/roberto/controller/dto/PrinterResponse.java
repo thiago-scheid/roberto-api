@@ -17,13 +17,8 @@ public class PrinterResponse implements Serializable {
 
 	// Lista de impressoras
 	private List<SystemPrinter> printers;
-
-	// Mensagem
-	private String message;
-
-	// Sistema
-	private String system;
-
-	// Status
+	
+	private String message;	
+	private String system;	
 	private boolean status;
 }
