@@ -30,6 +30,7 @@
 			**/enums/**,
 			**/factories/**,
 			**/dto/*,
+			**/util/*,
 			**/dto/**/*,
 			**/filter/*,			
 			**/security/*,			
@@ -184,10 +185,11 @@
 							<exclude>**/enums/*</exclude>
 						    <exclude>**/factories/**</exclude>
 							<exclude>**/dto/*</exclude>
+							<exclude>**/util/*</exclude>
 							<exclude>**/dto/**/*</exclude>
 							<exclude>**/filter/*</exclude>							
 							<exclude>**/security/*</exclude>
-							<exclude>**/test/*</exclude>
+							<exclude>**/test/*</exclude> 
 							<exclude>**/repository/*</exclude>
 							<exclude>**/exception/*</exclude>
 							<exclude>**/config/*</exclude>
