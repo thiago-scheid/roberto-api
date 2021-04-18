@@ -6,12 +6,11 @@ import com.roberto.service.templates.*;
 public class TemplateTagFactory {
 
 	public TagTemplateBase getTemplate(Object body, TemplateTagType templateType) {
-		
-		switch (templateType) {
-		case ZplTag:
+
+		if (templateType.equals(TemplateTagType.ZPLTAG)) {
 			return new ZplTag(body);
-		default:
-			return null;
 		}
+
+		return null;
 	}
 }

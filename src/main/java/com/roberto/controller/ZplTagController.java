@@ -29,7 +29,7 @@ public class ZplTagController {
 			response.setSystem("roberto");
 			response.setStatus(false);
 
-			boolean success = service.printTags(request.getPrinterName(), request.getZpl(), TemplateTagType.ZplTag);
+			boolean success = service.printTags(request.getPrinterName(), request.getZpl(), TemplateTagType.ZPLTAG);
 
 			if (success) {
 
