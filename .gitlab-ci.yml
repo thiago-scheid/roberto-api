@@ -8,7 +8,8 @@ cache:
 
 stages:
   - build
-  - test    
+  - test  
+  - sonar  
 
 variables:
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
@@ -44,5 +45,15 @@ test-tag:
   only:
     variables:
       - $CI_COMMIT_TAG =~ /^roberto-(stage|production)-.+/
+
+sonar:
+  stage: sonar
+  script:
+    - mvn sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_TOKEN 
+    - cat target/site/jacoco/index.html | grep -o '<tfoot>.*</tfoot>'
+  coverage: "/Total.*?([0-9]{1,3})%/"
+  only:
+    - master 
+
 
    
