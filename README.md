@@ -1,4 +1,4 @@
-# Roberto
+# Roberto Api
 
 > Api de impressão.
 
@@ -24,6 +24,31 @@ sdk i java 11.0.5-open
 Intellij: https://projectlombok.org/setup/intellij
 Eclipse : https://projectlombok.org/setup/eclipse
 VSCode : https://projectlombok.org/setup/vscode
+```
+
+## Configuração para Desenvolvimento
+
+Acessar a pasta raiz do projeto:
+
+**Compilar o projeto:**
+
+```sh
+sdk use java 11.0.2-open
+./mvnw clean package
+```
+
+**Executar o coverage:**
+
+```sh
+sdk use java 11.0.2-open
+./mvnw clean install jacoco:report
+```
+
+**Executar o projeto com configuração local:**
+
+```sh
+sdk use java 11.0.2-open
+./mvnw clean spring-boot:run -Dspring-boot.run.profiles=local
 ```
 
 **Executar o projeto**
