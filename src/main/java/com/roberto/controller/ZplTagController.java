@@ -19,12 +19,12 @@ public class ZplTagController {
 	private PrinterService service;
 
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ApiOperation(value = "Imprimir etiqueta ZPL")
+	@ApiOperation(value = "Imprime etiqueta, passando o código ZPL")
 	public ResponseEntity<PrintZplTagResponse> print(@RequestBody PrintZplTagRequest request) {
 
 		try {
 			
-			boolean success = service.printTags(request.getPrinterIdentifier(), request.getZpl(),
+			boolean success = service.printTags(request.getPrinterName(), request.getZpl(),
 					TemplateTagType.ZplTag);
 
 			if (success) {

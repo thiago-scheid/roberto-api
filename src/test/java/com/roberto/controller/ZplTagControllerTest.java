@@ -46,7 +46,7 @@ public class ZplTagControllerTest {
 
 		PrintZplTagRequest request = new PrintZplTagRequest();
 		request.setZpl(null);
-		request.setPrinterIdentifier("");
+		request.setPrinterName("");
 
 		when(service.printTags("", request.getZpl(), TemplateTagType.ZplTag)).thenReturn(false);
 
@@ -59,7 +59,7 @@ public class ZplTagControllerTest {
 
 		PrintZplTagRequest request = new PrintZplTagRequest();
 		request.setZpl("^XA^CFA,30^FO10,10^FDJohn Doe^FS^XZ");
-		request.setPrinterIdentifier("ZPL");
+		request.setPrinterName("ZPL");
 
 		when(service.printTags("ZPL", request.getZpl(), TemplateTagType.ZplTag)).thenReturn(true);
 

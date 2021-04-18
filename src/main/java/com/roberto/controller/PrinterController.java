@@ -29,7 +29,7 @@ public class PrinterController {
 	}
 
 	@GetMapping(value = "/printers", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ApiOperation(value = "Lista de impressoras cadastradas no servidor", notes = "Lista de impressoras cadastradas no servidor", response = PrinterResponse.class)
+	@ApiOperation(value = "Lista de impressoras cadastradas no servidor", response = PrinterResponse.class)
 	public ResponseEntity<PrinterResponse> prints() {
 
 		PrinterResponse response = new PrinterResponse();
@@ -53,7 +53,7 @@ public class PrinterController {
 	}
 
 	@GetMapping(value = "/printers/{printerName}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ApiOperation(value = "Verifica a impressora cadastrada no servidor pelo nome", notes = "Verifica a impressora cadastrada no servidor pelo nome", response = PrinterResponse.class)
+	@ApiOperation(value = "Verifica a impressora cadastrada no servidor pelo nome", response = PrinterResponse.class)
 	public ResponseEntity<PrinterResponse> printDetect(@PathVariable("printerName") String printerName) {
 
 		PrinterResponse response = new PrinterResponse();
