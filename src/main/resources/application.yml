@@ -8,6 +8,8 @@ spring:
      active: ${PROFILE:hml}
   application:
     name: ${APP-NAME:Roberto} 
+  jackson:
+    default-property-inclusion: non_null
 
 endpoints:
   health:
