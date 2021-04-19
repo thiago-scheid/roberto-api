@@ -20,12 +20,25 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
 
-		http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-				.exceptionHandling().authenticationEntryPoint(new DefaultAuthenticationEntryPoint()).and()
-				.authorizeRequests()
-				.antMatchers("/actuator/health", "/actuator/info", "/swagger-resources/**", "/v2/api-docs/**",
-						"/csrf/**", "/webjars/**", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**")
-				.permitAll().anyRequest().authenticated();
+		http.csrf()
+		    .disable() //NOSONAR
+		    .sessionManagement()
+		    .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+			.exceptionHandling().authenticationEntryPoint(new DefaultAuthenticationEntryPoint())
+			.and()
+			.authorizeRequests()
+			.antMatchers("/actuator/health", 
+					     "/actuator/info", 
+					     "/swagger-resources/**", 
+					     "/v2/api-docs/**",
+						 "/csrf/**", 
+						 "/webjars/**", 
+						 "/swagger-ui.html", 
+						 "/v3/api-docs/**", 
+						 "/swagger-ui/**")
+			.permitAll()
+			.anyRequest()
+			.authenticated();
 
 		http.addFilter(new JwtTokenAuthenticationFilter(authenticationManager(), jwtConfig));
 	}
