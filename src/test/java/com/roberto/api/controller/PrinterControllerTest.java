@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.DocFlavor;
 import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
 
@@ -80,7 +81,8 @@ public class PrinterControllerTest {
 	@Test
 	public void printDetectSucessTest() {
 
-		PrintService[] printServices = PrintServiceLookup.lookupPrintServices(null, null);
+		DocFlavor df = DocFlavor.SERVICE_FORMATTED.PRINTABLE;
+		PrintService[] printServices = PrintServiceLookup.lookupPrintServices(df, null);
 		PrintService printer = printServices[0];
 
 		when(service.detectPrinter("ZDesigner ZM400 200 dpi (ZPL)")).thenReturn(printer);

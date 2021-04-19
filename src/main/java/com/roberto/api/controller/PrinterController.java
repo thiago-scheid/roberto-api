@@ -57,18 +57,18 @@ public class PrinterController {
 
 		try {
 
-			response.setSystem("roberto");
-			response.setStatus(false);
+			response.setSystem("roberto");			
 
 			PrintService printer = service.detectPrinter(printerName);
 
 			if (printer == null) {
+				response.setStatus(false);
 				return new ResponseEntity<>(response, HttpStatus.SERVICE_UNAVAILABLE);
-			} else {
-				response.setMessage("Impressora - OK");
-				response.setStatus(true);
-				return new ResponseEntity<>(response, HttpStatus.OK);
 			}
+			
+			response.setMessage("Impressora - OK");
+			response.setStatus(true);
+			return new ResponseEntity<>(response, HttpStatus.OK);
 
 		} catch (PrinterNotFoundException ex) {
 
