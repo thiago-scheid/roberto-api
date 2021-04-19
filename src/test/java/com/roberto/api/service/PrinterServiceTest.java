@@ -1,13 +1,14 @@
 package com.roberto.api.service;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.test.context.junit4.SpringRunner;
-import com.roberto.api.service.PrinterService;
-import com.roberto.api.service.PrinterServiceImpl;
 
 @RunWith(SpringRunner.class)
 public class PrinterServiceTest {
@@ -15,6 +16,15 @@ public class PrinterServiceTest {
 	@Spy
 	@InjectMocks
 	private PrinterService service = new PrinterServiceImpl();
+
+	@Before
+	public void setUp() throws Exception {
+		MockitoAnnotations.initMocks(this);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
 
 	@Test
 	public void shouldNotNullService() {

@@ -5,13 +5,12 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 import javax.print.PrintService;
-import javax.print.attribute.PrintServiceAttribute;
-import javax.print.attribute.standard.PrinterName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.ResponseEntity;
@@ -72,6 +71,18 @@ public class PrinterControllerTest {
 		var response = (ResponseEntity<PrinterResponse>) controller.prints();
 
 		assertEquals(response.toString(), 500, response.getStatusCodeValue());
+	}
+	
+	@Test
+	public void printDetectSucessTest() {
+
+		var printer = Mockito.mock(PrintService.class);
+		
+		when(service.detectPrinter("Zebra1")).thenReturn(printer);
+
+		var response = (ResponseEntity<PrinterResponse>) controller.printDetect("Zebra1");
+
+		assertEquals(response.toString(), 200, response.getStatusCodeValue());
 	}
 
 	@Test
