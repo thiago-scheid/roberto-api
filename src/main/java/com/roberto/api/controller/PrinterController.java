@@ -27,7 +27,7 @@ public class PrinterController {
 	@ApiOperation(value = "Lista as impressoras instaladas no servidor", response = PrinterResponse.class)
 	public ResponseEntity<PrinterResponse> prints() {
 
-		PrinterResponse response = new PrinterResponse();
+		var response = new PrinterResponse();
 
 		try {
 			
@@ -53,7 +53,7 @@ public class PrinterController {
 	@ApiOperation(value = "Verifica a impressora instalada no servidor pelo nome", response = PrinterResponse.class)
 	public ResponseEntity<PrinterResponse> printDetect(@PathVariable("printerName") String printerName) {
 
-		PrinterResponse response = new PrinterResponse();
+		var response = new PrinterResponse();
 
 		try {
 

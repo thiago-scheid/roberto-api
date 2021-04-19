@@ -22,7 +22,7 @@ public class ZplTagController {
 	@ApiOperation(value = "Imprime etiqueta genéricas no formato ZPL", response = PrintZplTagResponse.class)
 	public ResponseEntity<PrintZplTagResponse> print(@RequestBody PrintZplTagRequest request) {
 
-		PrintZplTagResponse response = new PrintZplTagResponse();
+		var response = new PrintZplTagResponse();
 
 		try {
 

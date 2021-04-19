@@ -31,7 +31,7 @@ public class PrinterServiceImpl implements PrinterService {
 
 		for (PrintService ps : services) {
 
-			SystemPrinter print = new SystemPrinter();
+			var print = new SystemPrinter();
 			print.setId(null);
 			print.setName(ps.getName());
 
@@ -56,7 +56,7 @@ public class PrinterServiceImpl implements PrinterService {
 
 			PrintService printer = PrinterTagConfig.detectPrinter(printerIdentifier);
 
-			TemplateTagFactory factory = new TemplateTagFactory();
+			var factory = new TemplateTagFactory();
 			TagTemplateBase template = factory.getTemplate(tagBody, templateType);
 
 			try (InputStream input = new ByteArrayInputStream(template.getBytes())) {

@@ -12,7 +12,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import com.roberto.api.config.JwtConfig;
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 
 public class JwtTokenAuthenticationFilter extends BasicAuthenticationFilter {
@@ -34,12 +33,12 @@ public class JwtTokenAuthenticationFilter extends BasicAuthenticationFilter {
 			String token = header.replace(jwtConfig.getPrefix(), "");
 
 			try {
-				Claims claims = Jwts.parser().setSigningKey(jwtConfig.getSecret().getBytes()).parseClaimsJws(token)
+				var claims = Jwts.parser().setSigningKey(jwtConfig.getSecret().getBytes()).parseClaimsJws(token)
 						.getBody();
 
 				String username = claims.getSubject();
 				if (username != null) {
-					UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, null,
+					var auth = new UsernamePasswordAuthenticationToken(username, null,
 							Arrays.asList(new SimpleGrantedAuthority("admin")));
 
 					SecurityContextHolder.getContext().setAuthentication(auth);

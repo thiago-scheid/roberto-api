@@ -53,14 +53,14 @@ public abstract class TagTemplateBase {
 	}
 
 	protected void fillFields(Map<String, String> paramsMap) {
-		StringSubstitutor sub = new StringSubstitutor(paramsMap);
+		var sub = new StringSubstitutor(paramsMap);
 		sub.replaceIn(builder);
 		fixSpecialSimbols(builder);
 	}
 
 	protected void fixSpecialSimbols(StringBuilder buffer) {
-		for (int i = 0; i < buffer.length(); i++) {
-			String letter = String.valueOf(buffer.charAt(i));
+		for (var i = 0; i < buffer.length(); i++) {
+			var letter = String.valueOf(buffer.charAt(i));
 			if (dict.containsKey(letter)) {
 				buffer.replace(i, i + 1, dict.get(letter));
 			}
