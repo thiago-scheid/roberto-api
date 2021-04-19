@@ -32,7 +32,7 @@ public class SwaggerConfig {
 	@Bean
 	public Docket postsApi() {
 		
-		return new Docket(DocumentationType.SWAGGER_2).groupName("com.roberto").securitySchemes(Arrays.asList(apiKey()))
+		return new Docket(DocumentationType.SWAGGER_2).groupName("com.roberto.api").securitySchemes(Arrays.asList(apiKey()))
 				.securityContexts(Collections.singletonList(securityContext())).apiInfo(apiInfo()).select()
 				.paths(regex("/.*"))
 				.apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))
@@ -55,6 +55,6 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("API Roberto").description("API de impressão").version(version).build();
+		return new ApiInfoBuilder().title("API Roberto").description("API de impressão genérica").version(version).build();
 	}
 }

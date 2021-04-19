@@ -15,7 +15,7 @@
 	<artifactId>roberto</artifactId>
 	<version>1.0.0</version>
 	<name>roberto</name>
-	<description>API de impressão</description>
+	<description>API de impressão genérica</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

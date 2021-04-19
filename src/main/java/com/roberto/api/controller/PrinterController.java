@@ -23,15 +23,8 @@ public class PrinterController {
 	@Autowired
 	private PrinterService service;
 
-	public PrinterController() {
-	}
-
-	public PrinterController(PrinterService service) {
-		this.service = service;
-	}
-
 	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ApiOperation(value = "Lista de impressoras cadastradas no servidor", response = PrinterResponse.class)
+	@ApiOperation(value = "Lista as impressoras instaladas no servidor", response = PrinterResponse.class)
 	public ResponseEntity<PrinterResponse> prints() {
 
 		PrinterResponse response = new PrinterResponse();
@@ -57,7 +50,7 @@ public class PrinterController {
 	}
 
 	@GetMapping(value = "{printerName}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ApiOperation(value = "Verifica a impressora cadastrada no servidor pelo nome", response = PrinterResponse.class)
+	@ApiOperation(value = "Verifica a impressora instalada no servidor pelo nome", response = PrinterResponse.class)
 	public ResponseEntity<PrinterResponse> printDetect(@PathVariable("printerName") String printerName) {
 
 		PrinterResponse response = new PrinterResponse();

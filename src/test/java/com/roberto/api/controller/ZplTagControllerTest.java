@@ -42,28 +42,40 @@ public class ZplTagControllerTest {
 	}
 
 	@Test
-	public void printZplTagBadRequestTest() throws Exception {
-
-		PrintZplTagRequest request = new PrintZplTagRequest();
-		request.setZpl(null);
-		request.setPrinterName("");
-
-		when(service.printTags("", request.getZpl(), TemplateTagType.ZPLTAG)).thenReturn(false);
-
-		mockMvc.perform(post("/printer/zpl/").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-				.content(new ObjectMapper().writeValueAsString(request))).andExpect(status().isBadRequest());
-	}
-
-	@Test
 	public void printZplTagSuccessTest() throws Exception {
 
 		PrintZplTagRequest request = new PrintZplTagRequest();
-		request.setZpl("^XA^CFA,30^FO10,10^FDJohn Doe^FS^XZ");
+		request.setCodeZpl("^XA^CFA,30^FO10,10^FDJohn Doe^FS^XZ");
 		request.setPrinterName("ZPL");
 
-		when(service.printTags("ZPL", request.getZpl(), TemplateTagType.ZPLTAG)).thenReturn(true);
+		when(service.printTags("ZPL", request.getCodeZpl(), TemplateTagType.ZPLTAG)).thenReturn(true);
 
 		mockMvc.perform(post("/printer/zpl/").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
 				.content(new ObjectMapper().writeValueAsString(request))).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void printZplTagBadRequestTest() throws Exception {
+
+		PrintZplTagRequest request = new PrintZplTagRequest();
+		request.setCodeZpl(null);
+		request.setPrinterName("");
+
+		when(service.printTags("", request.getCodeZpl(), TemplateTagType.ZPLTAG)).thenReturn(false);
+
+		mockMvc.perform(post("/printer/zpl/").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+				.content(new ObjectMapper().writeValueAsString(request))).andExpect(status().isBadRequest());
+	}	
+
+	@Test
+	public void printZplTagExceptionTest() throws Exception {
+
+		PrintZplTagRequest request = new PrintZplTagRequest();		
+
+		when(service.printTags("", request.getCodeZpl(), TemplateTagType.ZPLTAG));
+
+		mockMvc.perform(post("/printer/zpl/").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+				.content(new ObjectMapper().writeValueAsString(request))).andExpect(status().is4xxClientError());		
+		
 	}
 }

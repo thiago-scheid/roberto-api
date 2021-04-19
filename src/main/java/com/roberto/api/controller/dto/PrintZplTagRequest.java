@@ -11,5 +11,5 @@ public class PrintZplTagRequest {
 	private String printerName;
 
 	@NotNull
-	private String zpl;
+	private String codeZpl;
 }

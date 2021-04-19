@@ -1,6 +1,6 @@
 # Roberto Api
 
-> Api de impressão.
+> Api de impressão genérica.
 
 ## Requisitos
 
