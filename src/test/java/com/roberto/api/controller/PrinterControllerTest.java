@@ -2,8 +2,13 @@ package com.roberto.api.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,8 +18,10 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import com.roberto.api.controller.dto.PrinterResponse;
 import com.roberto.api.controller.dto.SystemPrinter;
+import com.roberto.api.exception.PrinterNotFoundException;
 import com.roberto.api.service.PrinterService;
 
 @RunWith(SpringRunner.class)
@@ -28,7 +35,7 @@ public class PrinterControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		MockitoAnnotations.initMocks(this);		
+		MockitoAnnotations.initMocks(this);
 	}
 
 	@After
@@ -62,10 +69,55 @@ public class PrinterControllerTest {
 
 	@Test
 	public void printServerExceptionTest() {
-		
+
 		when(service.getPrinterServer());
 
 		ResponseEntity<PrinterResponse> response = (ResponseEntity<PrinterResponse>) controller.prints();
+
+		assertEquals(response.toString(), 500, response.getStatusCodeValue());
+	}
+
+	@Test
+	public void printDetectSucessTest() {
+
+		PrintService[] printServices = PrintServiceLookup.lookupPrintServices(null, null);
+		PrintService printer = printServices[0];
+
+		when(service.detectPrinter("ZDesigner ZM400 200 dpi (ZPL)")).thenReturn(printer);
+
+		ResponseEntity<PrinterResponse> response = (ResponseEntity<PrinterResponse>) controller.printDetect("ZDesigner ZM400 200 dpi (ZPL)");
+
+		assertEquals(response.toString(), 200, response.getStatusCodeValue());
+	}
+
+	@Test
+	public void printDetectServiceUnavableTest() {
+
+		PrintService printer = null;
+
+		when(service.detectPrinter("Zebra1")).thenReturn(printer);
+
+		ResponseEntity<PrinterResponse> response = (ResponseEntity<PrinterResponse>) controller.printDetect("Zebra1");
+
+		assertEquals(response.toString(), 503, response.getStatusCodeValue());
+	}
+	
+	@Test
+	public void printDetectNotFoundTest() {
+
+		when(service.detectPrinter("Zebra1")).thenThrow(PrinterNotFoundException.class);
+
+		ResponseEntity<PrinterResponse> response = (ResponseEntity<PrinterResponse>) controller.printDetect("Zebra1");
+
+		assertEquals(response.toString(), 404, response.getStatusCodeValue());
+	}
+	
+	@Test
+	public void printDetectExceptionTest() {
+
+		when(service.detectPrinter("Zebra1"));
+
+		ResponseEntity<PrinterResponse> response = (ResponseEntity<PrinterResponse>) controller.printDetect("Zebra1");
 
 		assertEquals(response.toString(), 500, response.getStatusCodeValue());
 	}
