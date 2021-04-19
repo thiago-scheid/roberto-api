@@ -57,12 +57,12 @@ public class PrinterController {
 
 		try {
 
-			response.setSystem("roberto");			
+			response.setSystem("roberto");		
+			response.setStatus(false);
 
 			PrintService printer = service.detectPrinter(printerName);
 
-			if (printer == null) {
-				response.setStatus(false);
+			if (printer == null) {				
 				return new ResponseEntity<>(response, HttpStatus.SERVICE_UNAVAILABLE);
 			}
 			

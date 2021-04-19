@@ -2,14 +2,10 @@ package com.roberto.api.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.print.DocFlavor;
 import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +15,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import com.roberto.api.controller.dto.PrinterResponse;
 import com.roberto.api.controller.dto.SystemPrinter;
 import com.roberto.api.exception.PrinterNotFoundException;
@@ -81,13 +76,12 @@ public class PrinterControllerTest {
 	@Test
 	public void printDetectSucessTest() {
 
-		DocFlavor df = DocFlavor.SERVICE_FORMATTED.PRINTABLE;
-		PrintService[] printServices = PrintServiceLookup.lookupPrintServices(df, null);
-		PrintService printer = printServices[0];
+		PrintService printer = PrintServiceLookup.lookupDefaultPrintService();
 
 		when(service.detectPrinter("ZDesigner ZM400 200 dpi (ZPL)")).thenReturn(printer);
 
-		ResponseEntity<PrinterResponse> response = (ResponseEntity<PrinterResponse>) controller.printDetect("ZDesigner ZM400 200 dpi (ZPL)");
+		ResponseEntity<PrinterResponse> response = (ResponseEntity<PrinterResponse>) controller
+				.printDetect("ZDesigner ZM400 200 dpi (ZPL)");
 
 		assertEquals(response.toString(), 200, response.getStatusCodeValue());
 	}
@@ -103,7 +97,7 @@ public class PrinterControllerTest {
 
 		assertEquals(response.toString(), 503, response.getStatusCodeValue());
 	}
-	
+
 	@Test
 	public void printDetectNotFoundTest() {
 
@@ -113,7 +107,7 @@ public class PrinterControllerTest {
 
 		assertEquals(response.toString(), 404, response.getStatusCodeValue());
 	}
-	
+
 	@Test
 	public void printDetectExceptionTest() {
 
