@@ -6,7 +6,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import java.io.IOException;
-import java.security.InvalidParameterException;
 import javax.print.DocFlavor;
 import javax.print.DocPrintJob;
 import javax.print.PrintService;
@@ -90,21 +89,39 @@ public class PrinterServiceTest {
 		assertTrue(result);
 	}
 
-	@Test(expected = InvalidParameterException.class)
-	public void printTagsInvalidPrinterNameTest() throws PrinterException, IOException {
+	@Test
+	public void printTagsInvalidPrinterNameEmptyTest() throws PrinterException, IOException {
 
-		service.printTags("", new PrintZplTagRequest(), TemplateTagType.ZPLTAG);
+		var result = service.printTags("", new PrintZplTagRequest(), TemplateTagType.ZPLTAG);
+		
+		assertTrue(!result);
+	}
+	
+	@Test
+	public void printTagsInvalidPrinterNameNullTest() throws PrinterException, IOException {
+
+		var result = service.printTags(null, new PrintZplTagRequest(), TemplateTagType.ZPLTAG);
+		
+		assertTrue(!result);
 	}
 
-	@Test(expected = InvalidParameterException.class)
+	@Test
 	public void printTagsInvalidTagBodyTest() throws PrinterException, IOException {
 
-		service.printTags("Zebra1", null, TemplateTagType.ZPLTAG);
+		var result = service.printTags("Zebra1", null, TemplateTagType.ZPLTAG);
+		
+		assertTrue(!result);
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void printTagsExceptionTest() throws PrinterException, IOException {
+	@Test(expected = Exception.class)
+	public void printTagsNullPointerExceptionTest() throws PrinterException, IOException {
 
 		service.printTags("DefaultPrinter", new PrintZplTagRequest(), null);
+	}
+
+	@Test(expected = Exception.class)
+	public void printTagsPrintExceptionTest() throws PrinterException, IOException {
+		
+		when(service.printTags(null, null, null)).thenThrow(Exception.class);
 	}
 }

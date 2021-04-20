@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.roberto.api.controller.ZplTagController;
 import com.roberto.api.controller.dto.PrintZplTagRequest;
 import com.roberto.api.enums.TemplateTagType;
+import com.roberto.api.exception.PrinterException;
 import com.roberto.api.service.PrinterService;
 
 @RunWith(SpringRunner.class)
@@ -58,10 +59,10 @@ public class ZplTagControllerTest {
 	public void printZplTagBadRequestTest() throws Exception {
 
 		PrintZplTagRequest request = new PrintZplTagRequest();
-		request.setCodeZpl(null);
-		request.setPrinterName("");
+		request.setCodeZpl("^XA^CFA,30^FO10,10^FDJohn Doe^FS^XZ");
+		request.setPrinterName("Zebra1");
 
-		when(service.printTags("", request.getCodeZpl(), TemplateTagType.ZPLTAG)).thenReturn(false);
+		when(service.printTags("Zebra1", request.getCodeZpl(), TemplateTagType.ZPLTAG)).thenReturn(false);
 
 		mockMvc.perform(post("/printer/zpl/").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
 				.content(new ObjectMapper().writeValueAsString(request))).andExpect(status().isBadRequest());
@@ -70,9 +71,11 @@ public class ZplTagControllerTest {
 	@Test
 	public void printZplTagExceptionTest() throws Exception {
 
-		PrintZplTagRequest request = new PrintZplTagRequest();		
+		PrintZplTagRequest request = new PrintZplTagRequest();
+		request.setCodeZpl("^XA^CFA,30^FO10,10^FDJohn Doe^FS^XZ");
+		request.setPrinterName("Zebra1");		
 
-		when(service.printTags("", request.getCodeZpl(), TemplateTagType.ZPLTAG));
+		when(service.printTags("Zebra1", request.getCodeZpl(), TemplateTagType.ZPLTAG)).thenThrow(PrinterException.class);
 
 		mockMvc.perform(post("/printer/zpl/").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
 				.content(new ObjectMapper().writeValueAsString(request))).andExpect(status().is4xxClientError());		

@@ -5,6 +5,7 @@ import com.roberto.api.controller.dto.PrintZplTagResponse;
 import com.roberto.api.enums.TemplateTagType;
 import com.roberto.api.service.PrinterService;
 import io.swagger.annotations.ApiOperation;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +21,7 @@ public class ZplTagController {
 
 	@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ApiOperation(value = "Imprime etiqueta genéricas no formato ZPL", response = PrintZplTagResponse.class)
-	public ResponseEntity<PrintZplTagResponse> print(@RequestBody PrintZplTagRequest request) {
+	public ResponseEntity<PrintZplTagResponse> print(@Valid @RequestBody PrintZplTagRequest request) {
 
 		var response = new PrintZplTagResponse();
 
@@ -33,21 +34,19 @@ public class ZplTagController {
 
 			if (success) {
 
-				response.setMessage("Sucesso ao imprimir etiqueta.");
+				response.setMessage("Label printing success");
 				response.setStatus(true);
 
 				return new ResponseEntity<>(response, HttpStatus.OK);
 			} else {
 
-				response.setMessage("Erro ao imprimir etiqueta.");
-
+				response.setMessage("Error printing label");
 				return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 			}
 
 		} catch (Exception ex) {
 
 			response.setMessage(ex.getMessage());
-
 			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 		}
 	}

@@ -66,13 +66,13 @@ public class PrinterController {
 				return new ResponseEntity<>(response, HttpStatus.SERVICE_UNAVAILABLE);
 			}
 			
-			response.setMessage("Impressora - OK");
+			response.setMessage("Printer - OK");
 			response.setStatus(true);
 			return new ResponseEntity<>(response, HttpStatus.OK);
 
 		} catch (PrinterNotFoundException ex) {
 
-			response.setMessage("Impressora não instalada no servidor.");
+			response.setMessage("Printer not installed on the server");
 			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 
 		} catch (Exception ex) {

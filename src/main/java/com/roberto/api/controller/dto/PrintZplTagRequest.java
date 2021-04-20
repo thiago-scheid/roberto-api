@@ -1,5 +1,6 @@
 package com.roberto.api.controller.dto;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -7,9 +8,11 @@ import lombok.Data;
 @NotNull
 public class PrintZplTagRequest {
 
-	@NotNull
+	@NotNull(message = "Printer name may not be null")
+	@NotEmpty(message = "Printer name may not be empty")
 	private String printerName;
 
-	@NotNull
+	@NotNull(message = "Code zpl may not be null")
+	@NotEmpty(message = "Code zpl may not be empty")
 	private String codeZpl;
 }
