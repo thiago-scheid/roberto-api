@@ -46,7 +46,6 @@ public class PrinterServiceImpl implements PrinterService {
 		return PrinterTagConfig.detectPrinter(printer);
 	}
 
-	@Override
 	public boolean printTags(String printerIdentifier, Object tagBody, TemplateTagType templateType)
 			throws PrinterException, IOException {
 
