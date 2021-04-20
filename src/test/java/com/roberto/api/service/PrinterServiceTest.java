@@ -1,6 +1,12 @@
 package com.roberto.api.service;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import java.io.IOException;
+import java.security.InvalidParameterException;
 import javax.print.DocFlavor;
 import javax.print.DocPrintJob;
 import javax.print.PrintService;
@@ -16,10 +22,10 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.test.context.junit4.SpringRunner;
+import com.roberto.api.controller.dto.PrintZplTagRequest;
+import com.roberto.api.enums.TemplateTagType;
+import com.roberto.api.exception.PrinterException;
 import com.roberto.api.exception.PrinterNotFoundException;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.ArgumentMatchers.any;
 
 @RunWith(SpringRunner.class)
 public class PrinterServiceTest {
@@ -68,40 +74,37 @@ public class PrinterServiceTest {
 
 		service.detectPrinter("DefaultPrinter");
 	}
-	
+
 	@Test(expected = PrinterNotFoundException.class)
 	public void detectPrinterNotFoundTest() {
 
 		service.detectPrinter("Zebra1");
 	}
 
-	/*
-	 * @Test(expected = PrinterNotFoundException.class) public void
-	 * printTagsNotFoundTest() throws PrinterException, IOException {
-	 * 
-	 * PrintZplTagRequest request = new PrintZplTagRequest();
-	 * request.setCodeZpl("38eu38u"); request.setPrinterName("Zebra1");
-	 * 
-	 * Mockito.mock(PrinterTagConfig.class); Mockito.mock(PrintServiceLookup.class);
-	 * 
-	 * boolean result = service.printTags("ZPL", request.getCodeZpl(),
-	 * TemplateTagType.ZPLTAG);
-	 * 
-	 * assertTrue(result); }
-	 * 
-	 * @Test(expected = InvalidParameterException.class) public void
-	 * printTagsInvalidPrinterNameTest() throws PrinterException, IOException {
-	 * 
-	 * service.printTags("", new PrintZplTagRequest(), TemplateTagType.ZPLTAG); }
-	 * 
-	 * @Test(expected = InvalidParameterException.class) public void
-	 * printTagsInvalidTagBodyTest() throws PrinterException, IOException {
-	 * 
-	 * service.printTags("Zebra1", null, TemplateTagType.ZPLTAG); }
-	 * 
-	 * @Test(expected = PrintException.class) public void printTagsExceptionTest()
-	 * throws PrinterException, IOException {
-	 * 
-	 * service.printTags("Zebra1", new PrintZplTagRequest(), null); }
-	 */
+	@Test
+	public void printTagsSucessTest() throws PrinterException, IOException {
+
+		boolean result = service.printTags("DefaultPrinter",
+				"^XA^FX Third section with bar code.^BY5,2,270^FO100,550^BC^FD12345678^FS^XZ", TemplateTagType.ZPLTAG);
+
+		assertTrue(result);
+	}
+
+	@Test(expected = InvalidParameterException.class)
+	public void printTagsInvalidPrinterNameTest() throws PrinterException, IOException {
+
+		service.printTags("", new PrintZplTagRequest(), TemplateTagType.ZPLTAG);
+	}
+
+	@Test(expected = InvalidParameterException.class)
+	public void printTagsInvalidTagBodyTest() throws PrinterException, IOException {
+
+		service.printTags("Zebra1", null, TemplateTagType.ZPLTAG);
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void printTagsExceptionTest() throws PrinterException, IOException {
+
+		service.printTags("DefaultPrinter", new PrintZplTagRequest(), null);
+	}
 }
