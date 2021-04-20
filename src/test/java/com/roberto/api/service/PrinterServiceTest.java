@@ -16,6 +16,7 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.test.context.junit4.SpringRunner;
+import com.roberto.api.exception.PrinterNotFoundException;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.any;
@@ -29,9 +30,9 @@ public class PrinterServiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
-		MockitoAnnotations.initMocks(this);		
-		
+
+		MockitoAnnotations.initMocks(this);
+
 		PrintService psDefault = mock(PrintService.class);
 		when(psDefault.getName()).thenReturn("DefaultPrinter");
 		when(psDefault.isDocFlavorSupported(any(DocFlavor.class))).thenReturn(Boolean.TRUE);
@@ -62,14 +63,19 @@ public class PrinterServiceTest {
 		assertNotNull(list);
 	}
 
+	@Test
+	public void detectPrinterTest() {
+
+		service.detectPrinter("DefaultPrinter");
+	}
+	
+	@Test(expected = PrinterNotFoundException.class)
+	public void detectPrinterNotFoundTest() {
+
+		service.detectPrinter("Zebra1");
+	}
+
 	/*
-	 * @Test(expected = PrinterNotFoundException.class) public void
-	 * detectPrinterNotFoundTest() {
-	 * 
-	 * Mockito.mock(PrinterTagConfig.class); Mockito.mock(PrintServiceLookup.class);
-	 * 
-	 * service.detectPrinter("Zebra1"); }
-	 * 
 	 * @Test(expected = PrinterNotFoundException.class) public void
 	 * printTagsNotFoundTest() throws PrinterException, IOException {
 	 * 
@@ -93,7 +99,7 @@ public class PrinterServiceTest {
 	 * 
 	 * service.printTags("Zebra1", null, TemplateTagType.ZPLTAG); }
 	 * 
-	 * @Test(expected = PrintException .class) public void printTagsExceptionTest()
+	 * @Test(expected = PrintException.class) public void printTagsExceptionTest()
 	 * throws PrinterException, IOException {
 	 * 
 	 * service.printTags("Zebra1", new PrintZplTagRequest(), null); }

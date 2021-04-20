@@ -9,12 +9,10 @@ import com.roberto.api.util.PrinterTagConfig;
 import org.springframework.stereotype.Service;
 import javax.print.PrintException;
 import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,30 +20,14 @@ public class PrinterServiceImpl implements PrinterService {
 
 	public List<SystemPrinter> getPrinterServer() {
 
-		PrintService[] services = null;
-
-		// Lista impressoras instaladas
-		services = PrintServiceLookup.lookupPrintServices(null, null);
-
-		List<SystemPrinter> list = new ArrayList<>();
-
-		for (PrintService ps : services) {
-
-			var print = new SystemPrinter();
-			print.setId(null);
-			print.setName(ps.getName());
-
-			list.add(print);
-		}
-
-		return list;
+		return PrinterTagConfig.getPrinterServer();
 	}
-	
-	public PrintService detectPrinter(String printer) {		
-		
+
+	public PrintService detectPrinter(String printer) {
+
 		return PrinterTagConfig.detectPrinter(printer);
 	}
-
+	
 	public boolean printTags(String printerIdentifier, Object tagBody, TemplateTagType templateType)
 			throws PrinterException, IOException {
 

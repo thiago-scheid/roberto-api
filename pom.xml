@@ -29,8 +29,7 @@
 			**/domain/**/*,
 			**/enums/**,
 			**/factories/**,
-			**/dto/*,
-			**/util/*,
+			**/dto/*,			
 			**/dto/**/*,
 			**/filter/*,			
 			**/security/*,			
@@ -185,8 +184,7 @@
 							<exclude>**/domain/**/*</exclude>
 							<exclude>**/enums/*</exclude>
 						    <exclude>**/factories/**</exclude>
-							<exclude>**/dto/*</exclude>
-							<exclude>**/util/*</exclude>
+							<exclude>**/dto/*</exclude>							
 							<exclude>**/dto/**/*</exclude>
 							<exclude>**/filter/*</exclude>							
 							<exclude>**/security/*</exclude>
