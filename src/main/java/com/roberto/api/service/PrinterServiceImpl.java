@@ -4,7 +4,7 @@ import com.roberto.api.controller.dto.SystemPrinter;
 import com.roberto.api.enums.TemplateTagType;
 import com.roberto.api.exception.PrinterException;
 import com.roberto.api.factories.TemplateTagFactory;
-import com.roberto.api.service.templates.TagTemplateBase;
+import com.roberto.api.template.TagTemplateBase;
 import com.roberto.api.util.PrinterTagConfig;
 import org.springframework.stereotype.Service;
 import javax.print.PrintException;
@@ -41,7 +41,8 @@ public class PrinterServiceImpl implements PrinterService {
 		return list;
 	}
 	
-	public PrintService detectPrinter(String printer) {
+	public PrintService detectPrinter(String printer) {		
+		
 		return PrinterTagConfig.detectPrinter(printer);
 	}
 

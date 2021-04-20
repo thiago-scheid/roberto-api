@@ -1,4 +1,4 @@
-package com.roberto.api.service.templates;
+package com.roberto.api.template;
 
 public class ZplTag extends TagTemplateBase {
 

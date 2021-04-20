@@ -1,7 +1,8 @@
 package com.roberto.api.factories;
 
 import com.roberto.api.enums.TemplateTagType;
-import com.roberto.api.service.templates.*;
+import com.roberto.api.template.TagTemplateBase;
+import com.roberto.api.template.ZplTag;
 
 public class TemplateTagFactory {
 

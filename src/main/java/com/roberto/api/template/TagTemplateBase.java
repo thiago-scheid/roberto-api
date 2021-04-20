@@ -1,4 +1,4 @@
-package com.roberto.api.service.templates;
+package com.roberto.api.template;
 
 import java.util.HashMap;
 import java.util.Map;

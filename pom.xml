@@ -35,6 +35,7 @@
 			**/filter/*,			
 			**/security/*,			
 			**/exception/*,
+			**/template/*,
 			**/config/*,
 			**/api/*RobertoApplication.*
 		</sonar.coverage.exclusions>
@@ -192,6 +193,7 @@
 							<exclude>**/test/*</exclude> 
 							<exclude>**/repository/*</exclude>
 							<exclude>**/exception/*</exclude>
+							<exclude>**/template/*</exclude>
 							<exclude>**/config/*</exclude>
 							<exclude>**/api/*RobertoApplication.*</exclude>
 						</excludes>

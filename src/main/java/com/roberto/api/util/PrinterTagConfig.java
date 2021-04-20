@@ -16,7 +16,7 @@ public class PrinterTagConfig {
 
 	}
 
-	// Busca impressora
+	// Busca impressora pelo nome
 	public static PrintService detectPrinter(String printer) {
 
 		PrintService print = null;

@@ -1,6 +1,7 @@
 package com.roberto.api.service;
 
 import static org.junit.Assert.assertNotNull;
+import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
 import org.junit.After;
 import org.junit.Assert;
@@ -36,11 +37,12 @@ public class PrinterServiceTest {
 
 	@Test
 	public void getPrinterServerSucessTest() {
-		
-		Mockito.mock(PrintServiceLookup.class);			
-		
+
+		Mockito.mock(PrintService.class);
+		Mockito.mock(PrintServiceLookup.class);
+
 		var list = service.getPrinterServer();
-		
+
 		assertNotNull(list);
 	}
 }
