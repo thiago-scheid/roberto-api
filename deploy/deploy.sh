@@ -18,7 +18,6 @@ mv pom.xml package
 mv Procfile package
 mv target/*.jar package
 mv system.properties package
-mv teresa.yaml package
 
 echo "env $3"
 
