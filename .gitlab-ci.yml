@@ -9,10 +9,13 @@ cache:
 stages:
   - build
   - test  
-  - sonar  
+  - sonar 
+  - deploy 
 
 variables:
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  APP_NAME: "roberto"
+  CLUSTER_PRODUCTION: ""  
 
 build: &build
   stage: build
@@ -55,6 +58,18 @@ sonar:
   only:
     refs:
       - master 
+
+deploy-production:
+  stage: deploy
+  before_script:
+    - mvn package -s settings.xml -DskipTests
+  script:
+    - ./deploy/deploy.sh $CLUSTER_PRODUCTION $APP_NAME
+  only:
+    refs:
+      - tags
+    variables:
+      - $CI_COMMIT_TAG =~ /^production-.*/
 
 
    
