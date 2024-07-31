@@ -1,6 +1,6 @@
 # Roberto Api
 
-> Api de impressão genérica.
+> API de impressão ZPL genérica. / Generic ZPL print API.
 
 ## Requisitos
 
